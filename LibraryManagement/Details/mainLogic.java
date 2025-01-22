@@ -55,7 +55,7 @@ public class mainLogic {
                                         lSuccess.returnBook();
                                         break;
                                     case 3:
-                                        lSuccess.bookissue();
+                                        lSuccess.bookIssue();;
                                         break;
                                     default:
                                         System.out.println("Invalid choice");            

@@ -1,97 +1,93 @@
 package Details;
+
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.Scanner;
+
 public class loginSuccess {
 
-    // define the properties
-    ArrayList<BookIssue> bIssue = new ArrayList<>();
+    // Define the properties
+    private ArrayList<BookIssue> bIssue = new ArrayList<>();
+    private Scanner input = new Scanner(System.in);
 
-    // define the Scanner
-    Scanner input =  new Scanner(System.in);
-    
-    // define the bookSearch() methord
-    public void bookSearch(){
-        int flag =0;
+    // Method to search for a book
+    public void bookSearch() {
         System.out.println("Enter the book name:");
-        String book = input.next();
+        String bookName = input.next();
 
-        for(BooksDetails books : BooksDetails.booksList){
-            if(books.getBook_name().equals(book)){
-                System.out.println("Book is present with "+books.getAvailable_pieces()+" Available piece");
-                flag =1;
+        boolean isBookFound = false;
+        for (BooksDetails book : BooksDetails.booksList) {
+            if (book.getBook_name().equalsIgnoreCase(bookName)) {
+                System.out.println("Book is available with " + book.getAvailable_pieces() + " pieces.");
+                isBookFound = true;
+                break;
             }
         }
-        if(flag ==0){
-            System.out.println("Book is not available in library");
+        if (!isBookFound) {
+            System.out.println("Book is not available in the library.");
         }
     }
 
-    // define the book issue() methord
-    public void bookissue(){
-        // define the properties
-        int flag =0;
-        System.out.println("Enter the BookId:");
+    // Method to issue a book
+    public void bookIssue() {
+        System.out.println("Enter the Book ID:");
         int bookId = input.nextInt();
-        for(BooksDetails books : BooksDetails.booksList){
-            if(books.getBooks_id() == bookId){
-                if(books.getAvailable_pieces()>=1){
-                    System.out.println("Enter the studentId:");
+
+        for (BooksDetails book : BooksDetails.booksList) {
+            if (book.getBooks_id() == bookId) {
+                if (book.getAvailable_pieces() > 0) {
+                    System.out.println("Enter the Student ID:");
                     int studentId = input.nextInt();
-                    for(BookIssue issue: bIssue){
-                        if(issue.getBookId() == bookId && issue.getStdId() == studentId ){
-                            flag =1;
-                            System.out.println("you have already issue the book");
-                            break;
-                        }
-                    }
-                    if(flag ==0){
-                        // calling the issue class Object
-                        BookIssue BookIssue = new BookIssue(bookId,studentId);
-                        bIssue.add(BookIssue);
-                        int currentPiece = books.getAvailable_pieces();
-                        books.setAvailable_pieces(currentPiece--);
-                    }    
 
+                    boolean alreadyIssued = bIssue.stream()
+                            .anyMatch(issue -> issue.getBookId() == bookId && issue.getStdId() == studentId);
+
+                    if (alreadyIssued) {
+                        System.out.println("You have already issued this book.");
+                    } else {
+                        bIssue.add(new BookIssue(bookId, studentId));
+                        book.setAvailable_pieces(book.getAvailable_pieces() - 1);
+                        System.out.println("Book issued successfully.");
+                    }
+                } else {
+                    System.out.println("No copies of this book are currently available.");
                 }
+                return;
             }
         }
-        
+        System.out.println("Book ID not found.");
     }
 
-    // define the return book() methord
-    public void returnBook(){
-        // define the properties
-        int flag1 =0;
-        int flag =0;
-        System.out.println("Enter the studentId:");
-        int stdId = input.nextInt();
-        for(BookIssue issue: bIssue){
-            if(issue.getStdId() == stdId){
-                System.out.println("Enter the book id");
-                int bookId = input.nextInt();
-                if(issue.getBookId()== bookId){
-                    flag1 =1;
-                    bIssue.remove(issue);
-                }
-                else{
-                    for(BookIssue issue2 : bIssue){
-                        if(issue2.getBookId() == bookId){
-                                bIssue.remove(issue2);
-                                flag1 =1;
-                        }
-                    }
-                    if(flag1 ==0){
-                        System.out.println("Inavlid bookId");
-                    }
-                }
-                flag =1;
+    // Method to return a book
+    public void returnBook() {
+        System.out.println("Enter the Student ID:");
+        int studentId = input.nextInt();
 
+        System.out.println("Enter the Book ID:");
+        int bookId = input.nextInt();
+
+        Iterator<BookIssue> iterator = bIssue.iterator();
+        boolean isBookReturned = false;
+
+        while (iterator.hasNext()) {
+            BookIssue issue = iterator.next();
+            if (issue.getStdId() == studentId && issue.getBookId() == bookId) {
+                iterator.remove();
+                for (BooksDetails book : BooksDetails.booksList) {
+                    if (book.getBooks_id() == bookId) {
+                        book.setAvailable_pieces(book.getAvailable_pieces() + 1);
+                        break;
+                    }
+                }
+                System.out.println("Book returned successfully.");
+                isBookReturned = true;
+                break;
             }
         }
-        if(flag == 0){
-            System.out.println("You have not issued any book or your StdId is wrong");
-        }
 
+        if (!isBookReturned) {
+            System.out.println("Invalid Student ID or Book ID, or no record of this issue exists.");
+        }
     }
-    
 }
+

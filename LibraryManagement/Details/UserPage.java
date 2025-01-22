@@ -7,6 +7,9 @@ public class UserPage {
         // calling the Scanner 
         Scanner input = new Scanner(System.in);
 
+        Student_Details sDetails = new Student_Details(1,"lakshya","123","Lakshya@gmal.com",0);
+        mainLogic.StudentList.add(sDetails);
+
         BooksDetails b1 = new BooksDetails(1,"Maths",5,5);
         BooksDetails b2 = new BooksDetails(2,"English",5,5);
         BooksDetails b3 = new BooksDetails(3,"Hindi",5,5);
@@ -15,6 +18,9 @@ public class UserPage {
         BooksDetails.booksList.add(b3);
         
         mainLogic.main12();
+
+        // close the Scanner
+        input.close();
         
         
     }

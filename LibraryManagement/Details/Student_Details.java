@@ -9,7 +9,6 @@ public class Student_Details {
         private String passward;
         private String name =null;
         private int No_of_booked_issued =0;
-        private ArrayList<Integer> bookList = null;
     
         // define the constructor
         public Student_Details() {
@@ -22,6 +21,16 @@ public class Student_Details {
             this.passward = passward;
     
         }
+
+
+    public Student_Details(int studentId, String Email, String passward, String name, int No_of_booked_issued) {
+        this.studentId = studentId;
+        this.Email = Email;
+        this.passward = passward;
+        this.name = name;
+        this.No_of_booked_issued = No_of_booked_issued;
+    }
+
     
         // define the getter and setter methord
     
@@ -64,24 +73,8 @@ public class Student_Details {
         this.No_of_booked_issued = No_of_booked_issued;
     }
 
-    public ArrayList<Integer> getBookList() {
-        return this.bookList;
-    }
-
-    public void setBookList(ArrayList<Integer> bookList) {
-        this.bookList = bookList;
-    }
 
 
-    public static String Display(Student_Details obj) {
-        return "{" +
-            " studentId='" + obj.getStudentId() + "'" +
-            ", Email='" + obj.getEmail() + "'" +
-            ", name='" + obj.getName() + "'" +
-            ", No_of_booked_issued='" + obj.getNo_of_booked_issued() + "'" +
-            ", bookList='" + obj.getBookList() + "'" +
-            "}";
-    }
     
 
     

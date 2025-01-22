@@ -7,7 +7,7 @@ public class BooksDetails {
     // define the properties
     static ArrayList<BooksDetails> booksList = new ArrayList<>();
     private static final int passward1 = 123;
-    private int books_id =0;
+    private int books_id ;
     private String book_name;
     private int Total_pieces;
     private int Available_pieces;
@@ -17,12 +17,20 @@ public class BooksDetails {
     public BooksDetails() {
     }
 
-    public BooksDetails(String book_name, int Total_pieces) {
-        this.books_id++;
+    public BooksDetails(int bookId,String book_name, int Total_pieces) {
+        this.books_id = bookId;
         this.book_name = book_name;
         this.Total_pieces = Total_pieces;
         this.Available_pieces = Total_pieces;
     }
+
+    public BooksDetails(int books_id, String book_name, int Total_pieces, int Available_pieces) {
+        this.books_id = books_id;
+        this.book_name = book_name;
+        this.Total_pieces = Total_pieces;
+        this.Available_pieces = Available_pieces;
+    }
+    
 
     // define the getter and setter methord
 
@@ -67,7 +75,7 @@ public class BooksDetails {
     
 
     // define the psvm() methord
-    public static void main(String[] args) {
+    public static void add() {
         // define the properties
         int choice =0;
         int flag;
@@ -79,12 +87,14 @@ public class BooksDetails {
         if(passward  == passward1){
             do{
                 flag =0;
+                System.out.println("Enter the id:");
+                int id = input.nextInt();
                 System.out.println("Enter the book name:");
                 String book = input.next();
                 System.out.println("Enter the no of pieces");
                 int peice = input.nextInt();
                 // calling the class Object
-                BooksDetails bDetails = new BooksDetails(book,peice);
+                BooksDetails bDetails = new BooksDetails(id,book,peice);
 
                 if(booksList.isEmpty()){
                     booksList.add(bDetails);
@@ -95,7 +105,7 @@ public class BooksDetails {
                             flag =1;
                             int OldPeice = copy.getTotal_pieces();
                             int TotalPeice = OldPeice+peice;
-                            copy.setAvailable_pieces(TotalPeice);
+                            copy.setTotal_pieces(TotalPeice);
                             int old = copy.getAvailable_pieces();
                             int total = old+peice;
                             copy.setAvailable_pieces(total);

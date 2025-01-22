@@ -8,7 +8,7 @@ public class mainLogic {
 
     static ArrayList<Student_Details> StudentList;
         
-        public static void main(String[] args) {
+        public static void main12() {
     
             // define the ArrayList()
             StudentList = new ArrayList<>();
@@ -84,10 +84,7 @@ public class mainLogic {
                     StudentList.add(student_Details);
                     System.out.println("************WELCOME*************\n"+
                                        " You have enrolled Sucessfully\n"+
-                                       "********************************");
-                    System.out.println("********STUDENT_DETAILS*******");
-                    student_Details.toString(); 
-                    System.out.println("******************************");                  
+                                       "********************************");                
 
             }
         }

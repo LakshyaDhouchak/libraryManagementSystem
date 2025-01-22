@@ -22,7 +22,7 @@ public class loginSuccess {
             }
         }
         if(flag ==0){
-            System.out.println("Book id not available in library");
+            System.out.println("Book is not available in library");
         }
     }
 

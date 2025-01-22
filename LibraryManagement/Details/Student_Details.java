@@ -72,14 +72,14 @@ public class Student_Details {
         this.bookList = bookList;
     }
 
-    @Override
-    public String toString() {
+
+    public static String Display(Student_Details obj) {
         return "{" +
-            " studentId='" + getStudentId() + "'" +
-            ", Email='" + getEmail() + "'" +
-            ", name='" + getName() + "'" +
-            ", No_of_booked_issued='" + getNo_of_booked_issued() + "'" +
-            ", bookList='" + getBookList() + "'" +
+            " studentId='" + obj.getStudentId() + "'" +
+            ", Email='" + obj.getEmail() + "'" +
+            ", name='" + obj.getName() + "'" +
+            ", No_of_booked_issued='" + obj.getNo_of_booked_issued() + "'" +
+            ", bookList='" + obj.getBookList() + "'" +
             "}";
     }
     

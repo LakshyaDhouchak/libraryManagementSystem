@@ -1,6 +1,6 @@
 package Details;
 
-import java.util.ArrayList;
+
 
 public class Student_Details {
     // define the properties

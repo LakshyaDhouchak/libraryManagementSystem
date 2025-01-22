@@ -7,7 +7,7 @@ public class UserPage {
         // calling the Scanner 
         Scanner input = new Scanner(System.in);
 
-        Student_Details sDetails = new Student_Details(1,"lakshya","123","Lakshya@gmal.com",0);
+        Student_Details sDetails = new Student_Details(1,"lakshya@gmail.com","123","Lakshya",0);
         mainLogic.StudentList.add(sDetails);
 
         BooksDetails b1 = new BooksDetails(1,"Maths",5,5);

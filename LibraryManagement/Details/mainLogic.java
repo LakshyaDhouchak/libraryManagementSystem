@@ -6,12 +6,9 @@ import java.util.Scanner;
 public class mainLogic {
 
 
-    static ArrayList<Student_Details> StudentList;
+    static ArrayList<Student_Details> StudentList = new ArrayList<>();
         
         public static void main12() {
-    
-            // define the ArrayList()
-            StudentList = new ArrayList<>();
     
             // calling the Scanner
             Scanner input =  new Scanner(System.in);
